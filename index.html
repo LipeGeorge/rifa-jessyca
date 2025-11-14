@@ -61,18 +61,20 @@
         }
 
         body {
-            /* Define o degradê */
-            background-image: linear-gradient(
-                to bottom,  /* A direção: de cima para baixo */
-                #05193f,     /* Cor inicial: um azul-céu */
-                #FFFFFF      /* Cor final: branco */
-            );
-            
-            /* Garante que o degradê cubra a tela inteira, mesmo se o conteúdo for curto */
+            /* ... (suas regras de background-image e min-height) ... */
+            background-image: linear-gradient(to bottom, #041b3d, #FFFFFF);
             min-height: 100vh;
-            
-            /* Previne que a imagem de fundo se repita */
             background-repeat: no-repeat;
+
+            /* ADICIONE ESTAS 3 LINHAS:
+            Elas criam a "moldura" de degradê
+            */
+            padding-top: 15px;
+            padding-left: 10px;
+            padding-right: 10px;
+            /* Não mexemos no padding-bottom, pois ele já é
+            controlado pela classe "pb-5" que está na sua tag <body> 
+            */
         }
 
         /* Estilos simples para os estados dos números */
