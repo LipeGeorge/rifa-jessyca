@@ -3,9 +3,25 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rifa da Amiga</title>
+    <title>Rifa da Jessyca</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
     <style>
+
+        body {
+            /* Define o degradê */
+            background-image: linear-gradient(
+                to bottom,  /* A direção: de cima para baixo */
+                #0a275c,     /* Cor inicial: um azul-céu */
+                #FFFFFF      /* Cor final: branco */
+            );
+            
+            /* Garante que o degradê cubra a tela inteira, mesmo se o conteúdo for curto */
+            min-height: 100vh;
+            
+            /* Previne que a imagem de fundo se repita */
+            background-repeat: no-repeat;
+        }
+
         /* Estilos simples para os estados dos números */
         .numero-card {
             cursor: pointer;
@@ -33,11 +49,12 @@
         }
     </style>
 </head>
-<body class="bg-light pb-5">
+<body class="pb-5">
 
-    <div class="container py-5 mb-5">
+    <div class="container py-5 mb-5 bg-white rounded shadow">
+
         <div class="text-center mb-5">
-            <h1>🎟️ Rifa Beneficente</h1>
+            <h1>🎟️ Rifa da Jessyca</h1>
             <p class="lead">Selecione seus números e clique em reservar!</p>
             <div class="d-flex justify-content-center gap-3">
                 <div><span class="badge bg-light text-dark border">Livre</span></div>
@@ -58,7 +75,7 @@
                 <small class="text-muted">Total: R$ <span id="valor-total">0,00</span></small>
             </div>
             <button onclick="enviarWhatsApp()" class="btn btn-success btn-lg">
-                Reservar no WhatsApp 
+                Continuar para WhatsApp
             </button>
         </div>
     </div>
