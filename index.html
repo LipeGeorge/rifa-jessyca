@@ -5,49 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Rifa da Jessyca</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <style>
-
-        body {
-            /* Define o degradê */
-            background-image: linear-gradient(
-                to bottom,  /* A direção: de cima para baixo */
-                #0a275c,     /* Cor inicial: um azul-céu */
-                #FFFFFF      /* Cor final: branco */
-            );
-            
-            /* Garante que o degradê cubra a tela inteira, mesmo se o conteúdo for curto */
-            min-height: 100vh;
-            
-            /* Previne que a imagem de fundo se repita */
-            background-repeat: no-repeat;
-        }
-
-        /* Estilos simples para os estados dos números */
-        .numero-card {
-            cursor: pointer;
-            transition: all 0.2s;
-            border: 2px solid #ddd;
-        }
-        .numero-livre:hover { transform: scale(1.05); border-color: #28a745; }
-        
-        /* Classes de estado */
-        .bg-livre { background-color: #f8f9fa; color: #333; }
-        .bg-selecionado { background-color: #28a745; color: white; border-color: #28a745; }
-        .bg-vendido { background-color: #dc3545; color: white; cursor: not-allowed; opacity: 0.6; }
-
-        /* Barra flutuante de checkout */
-        #checkout-bar {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            background: white;
-            padding: 15px;
-            box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
-            display: none; /* Começa escondida */
-            z-index: 1000;
-        }
-    </style>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body class="pb-5">
 
@@ -56,6 +14,15 @@
         <div class="text-center mb-5">
             <h1>🎟️ Rifa da Jessyca</h1>
             <p class="lead">Selecione seus números e clique em reservar!</p>
+            <div class="timer-container my-4">
+                <div class="timer-badge">O sorteio será em:</div>
+                <div id="countdown-display" class="shadow-sm">Carregando...</div>
+                <div class="timer-badge">Dia 20 dez às 22h</div>
+            </div>
+            <div class="d-flex justify-content-center gap-3">
+                </div>
+
+
             <div class="d-flex justify-content-center gap-3">
                 <div><span class="badge bg-light text-dark border">Livre</span></div>
                 <div><span class="badge bg-success">Selecionado</span></div>
@@ -74,124 +41,13 @@
                 <h5 class="m-0">Selecionados: <span id="contador-selecao">0</span></h5>
                 <small class="text-muted">Total: R$ <span id="valor-total">0,00</span></small>
             </div>
-            <button onclick="enviarWhatsApp()" class="btn btn-success btn-lg">
+            <button onclick="enviarWhatsApp()" class="btn btn-success btn-lg" id="btn-reservar">
                 Continuar para WhatsApp
             </button>
         </div>
     </div>
 
-    <script>
-        // --- CONFIGURAÇÕES ---
-        // COLE AQUI O LINK DO CSV QUE VOCÊ GEROU NO PASSO 1
-        const SHEET_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vRKGsyuscKYI0aLYldQ06Jq6tyvGgOyIupFnrljpdLwv0v1Unh8A9FNDwYpeF8QpKCYUoH7YPLsa2Bs/pub?output=csv'; 
-        
-        const PRECO_POR_NUMERO = 10.00; // Valor da rifa
-        const WHATSAPP_NUMERO = '5588981688970'; // Número da sua amiga (com 55 e DDD)
-
-        // --- ESTADO DA APLICAÇÃO ---
-        let numerosSelecionados = [];
-
-        // --- LÓGICA ---
-        async function carregarDados() {
-            try {
-                const response = await fetch(SHEET_URL);
-                const data = await response.text();
-                processarCSV(data);
-            } catch (error) {
-                console.error('Erro ao carregar:', error);
-                document.getElementById('grid-numeros').innerHTML = '<p class="text-danger text-center">Erro ao carregar os números. Avise o administrador.</p>';
-            }
-        }
-
-        function processarCSV(textoCsv) {
-            const linhas = textoCsv.split('\n');
-            const grid = document.getElementById('grid-numeros');
-            grid.innerHTML = ''; // Limpa o loading
-
-            // Começa do i=1 para pular o cabeçalho da planilha
-            for (let i = 1; i < linhas.length; i++) {
-                // Divide a linha por vírgula (CSV simples)
-                const colunas = linhas[i].split(',');
-                if (colunas.length < 2) continue;
-
-                const numero = colunas[0].trim();
-                const status = colunas[1].trim().toLowerCase(); // "livre" ou "vendido"
-
-                criarElementoNumero(numero, status);
-            }
-        }
-
-        function criarElementoNumero(numero, status) {
-            const grid = document.getElementById('grid-numeros');
-            const div = document.createElement('div');
-            div.className = 'col';
-
-            // Define a classe baseada no status vindo da planilha
-            let classeCor = status === 'vendido' ? 'bg-vendido' : 'bg-livre';
-            
-            div.innerHTML = `
-                <div class="card h-100 numero-card ${classeCor}" 
-                     id="num-${numero}"
-                     onclick="toggleNumero('${numero}', '${status}')">
-                    <div class="card-body d-flex align-items-center justify-content-center p-2">
-                        <h5 class="m-0 fw-bold">${numero}</h5>
-                    </div>
-                </div>
-            `;
-            grid.appendChild(div);
-        }
-
-        function toggleNumero(numero, statusOriginal) {
-            if (statusOriginal === 'vendido') return; // Não faz nada se já vendeu
-
-            const index = numerosSelecionados.indexOf(numero);
-            const elemento = document.getElementById(`num-${numero}`);
-
-            if (index > -1) {
-                // Se já estava selecionado, remove
-                numerosSelecionados.splice(index, 1);
-                elemento.classList.remove('bg-selecionado');
-                elemento.classList.add('bg-livre');
-            } else {
-                // Se não estava, adiciona
-                numerosSelecionados.push(numero);
-                elemento.classList.remove('bg-livre');
-                elemento.classList.add('bg-selecionado');
-            }
-
-            atualizarBarraCheckout();
-        }
-
-        function atualizarBarraCheckout() {
-            const barra = document.getElementById('checkout-bar');
-            const contador = document.getElementById('contador-selecao');
-            const total = document.getElementById('valor-total');
-
-            if (numerosSelecionados.length > 0) {
-                barra.style.display = 'block';
-                contador.innerText = numerosSelecionados.join(', ');
-                total.innerText = (numerosSelecionados.length * PRECO_POR_NUMERO).toFixed(2).replace('.', ',');
-            } else {
-                barra.style.display = 'none';
-            }
-        }
-
-        function enviarWhatsApp() {
-            if (numerosSelecionados.length === 0) return;
-
-            const nums = numerosSelecionados.join(', ');
-            const total = (numerosSelecionados.length * PRECO_POR_NUMERO).toFixed(2).replace('.', ',');
-            
-            // Cria a mensagem
-            const mensagem = `Olá! Gostaria de reservar os números: *${nums}*. Total: R$ ${total}. Como faço o Pix?`;
-            
-            // Abre o WhatsApp
-            const link = `https://wa.me/${WHATSAPP_NUMERO}?text=${encodeURIComponent(mensagem)}`;
-            window.open(link, '_blank');
-        }
-
-        // Inicia tudo
-        carregarDados();
-    </script>
+    <script src="script.js"></script>
+    
 </body>
 </html>

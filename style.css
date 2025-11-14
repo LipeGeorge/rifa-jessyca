@@ -1,0 +1,96 @@
+
+/* --- Estilos do Timer --- */
+
+.timer-container {
+    /* Apenas centraliza o conteúdo */
+    text-align: center;
+}
+
+.timer-badge {
+    /* A "etiqueta" laranja */
+    display: inline-block;
+    background-color: #f39c12; /* Um tom de laranja/âmbar */
+    color: #333; /* Texto escuro para contrastar */
+    padding: 4px 12px;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+#countdown-display {
+    /* A caixa branca do relógio */
+    display: inline-block; /* Faz a caixa ter o tamanho do conteúdo */
+    background-color: white;
+    border: 1px solid #eee;
+    border-radius: 8px;
+    padding: 10px 24px;
+    margin: 10px 0; /* Espaçamento entre as etiquetas */
+    
+    /* Estilo da fonte */
+    font-size: 1.75rem; /* Tamanho grande */
+    font-weight: bold;
+    color: #333;
+}
+
+/* Efeito de hover para os números LIVRES */
+.numero-card.bg-livre:hover {
+    transform: scale(1.05); /* Efeito de 'saltar' levemente */
+    border-color: #28a745;  /* Borda fica verde (cor de seleção) */
+    border-width: 2px;      /* Garante que a borda fique mais grossa */
+    cursor: pointer;           /* Mostra a 'mãozinha' */
+}
+
+/* Força a cor do botão (Exemplo TEMA VERDE) */
+#btn-reservar {
+    background-color: #28a745; /* Verde padrão do Bootstrap */
+    border-color: #28a745;
+}
+
+/* Define o hover (um verde mais escuro) */
+#btn-reservar:hover {
+    background-color: #218838; 
+    border-color: #1e7e34;
+}
+
+body {
+    /* ... (suas regras de background-image e min-height) ... */
+    background-image: linear-gradient(to bottom, #041b3d, #FFFFFF);
+    min-height: 100vh;
+    background-repeat: no-repeat;
+
+    /* ADICIONE ESTAS 3 LINHAS:
+    Elas criam a "moldura" de degradê
+    */
+    padding-top: 15px;
+    padding-left: 10px;
+    padding-right: 10px;
+    /* Não mexemos no padding-bottom, pois ele já é
+    controlado pela classe "pb-5" que está na sua tag <body> 
+    */
+}
+
+/* Estilos simples para os estados dos números */
+.numero-card {
+    cursor: pointer;
+    transition: all 0.2s;
+    border: 2px solid #ddd;
+}
+.numero-livre:hover { transform: scale(1.05); border-color: #28a745; }
+
+/* Classes de estado */
+.bg-livre { background-color: #f8f9fa; color: #333; }
+.bg-selecionado { background-color: #28a745; color: white; border-color: #28a745; }
+.bg-vendido { background-color: #dc3545; color: white; cursor: not-allowed; opacity: 0.6; }
+
+/* Barra flutuante de checkout */
+#checkout-bar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: white;
+    padding: 15px;
+    box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
+    display: none; /* Começa escondida */
+    z-index: 1000;
+}
