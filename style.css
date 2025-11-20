@@ -1,0 +1,193 @@
+body {
+   /* Mude o degradê para NUNCA ficar branco */
+    background-image: linear-gradient(
+        to bottom,  
+        #0069d9, /* Seu azul forte */
+        #041e3a  /* Um azul bem escuro, quase preto */
+    );
+    background-attachment: fixed; /* Isso é importante para o blur funcionar */
+    min-height: 100vh;
+    background-repeat: no-repeat;
+    
+    /* Mantém os paddings que corrigimos para o celular */
+    padding-top: 15px;
+    padding-left: 10px;
+    padding-right: 10px;
+
+    font-family: 'Montserrat', sans-serif;
+}
+
+/* --- Novos Estilos da Versão Profissional --- */
+
+/* 1. Estado Pendente (Amarelo) */
+.bg-pendente {
+    background-color: #f39c12 !important; /* Laranja/Amarelo */
+    color: #FFFFFF;
+    border-color: #f39c12;
+    cursor: not-allowed;
+    opacity: 0.8;
+}
+
+/* 2. Nome do Comprador (Abaixo do número vendido) */
+.nome-comprador {
+    font-size: 0.6rem;
+    font-weight: 500;
+    font-style: italic;
+    opacity: 0.8;
+}
+
+/* 3. Ajustes na Barra de Checkout */
+#checkout-bar {
+    /* Garante que o fundo seja azul escuro, combinando com o tema */
+    background-color: #041e3a; 
+    padding: 15px;
+    box-shadow: 0 -2px 10px rgba(0,0,0,0.3);
+}
+
+/* Ajuste para o checkout bar ficar bom no celular */
+@media (max-width: 576px) {
+    #checkout-bar .container {
+        flex-direction: column; /* Empilha os itens */
+        align-items: flex-start !important; /* Alinha à esquerda */
+        gap: 15px; /* Adiciona espaço */
+    }
+    #checkout-bar .text-end {
+        text-align: left !important; /* Alinha o "Total" à esquerda */
+    }
+    #checkout-bar button {
+        width: 100%; /* Botão ocupa 100% */
+    }
+}
+
+
+
+/* --- Contraste do Conteúdo no Vidro --- */
+
+/* Força Título, Prêmio e Legenda a serem brancos */
+.display-4, .h3.fw-bold, .lead {
+    color: #FFFFFF !important; /* Usa !important para vencer o 'text-success' */
+    
+    /* Sombra no texto para 'saltar' do fundo */
+    text-shadow: 0 2px 4px rgba(0,0,0,0.3);
+}
+
+/* --- Estilo Glassmorphism --- */
+.bg-white.shadow {
+    /* 1. Remove o fundo branco sólido */
+    background-color: rgba(255, 255, 255, 0.15) !important; /* Branco bem transparente */
+    
+    /* 2. A MÁGICA: O desfoque */
+    backdrop-filter: blur(20px);
+    
+    /* 3. Polimento */
+    border: 1px solid rgba(255, 255, 255, 0.2); /* Borda sutil */
+    box-shadow: 0 8px 32px 0 rgba(0, 0, 0, 0.3); /* Sombra mais difusa */
+}
+
+/* --- Estilos do Timer --- */
+
+.timer-container {
+    /* Apenas centraliza o conteúdo */
+    text-align: center;
+}
+
+.timer-badge {
+    /* A "etiqueta" laranja */
+    display: inline-block;
+    background-color: #f39c12; /* Um tom de laranja/âmbar */
+    color: #333; /* Texto escuro para contrastar */
+    padding: 4px 12px;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    font-weight: 500;
+}
+
+#countdown-display {
+    /* A caixa branca do relógio */
+    display: inline-block; /* Faz a caixa ter o tamanho do conteúdo */
+    background-color: white;
+    border: 1px solid #eee;
+    border-radius: 8px;
+    padding: 10px 24px;
+    margin: 10px 0; /* Espaçamento entre as etiquetas */
+    
+    /* Estilo da fonte */
+    font-size: 1.75rem; /* Tamanho grande */
+    font-weight: bold;
+    color: #333;
+}
+
+/* Deixa o número selecionado com o tom de azul da arte */
+.bg-selecionado { 
+    background-color: #007bff; /* Azul primário do Bootstrap */
+    color: white; 
+    border-color: #007bff; 
+}
+
+
+/* Deixa o botão de reservar azul também */
+#btn-reservar {
+    background-color: #007bff;
+    border-color: #007bff;
+    transition: all 0.2s ease-in-out;
+}
+/* Efeito hover do botão */
+#btn-reservar:hover {
+    background-color: #0056b3; /* Um azul mais escuro no hover */
+    border-color: #0056b3;
+}
+
+
+
+/* Estilos simples para os estados dos números */
+/* Transforma os números livres em 'fichas de vidro' */
+.numero-card {
+    background-color: rgba(255, 255, 255, 0.2); /* Fundo de vidro sutil */
+    border: 1px solid rgba(255, 255, 255, 0.3); /* Borda de vidro */
+    color: #FFFFFF; /* Texto do número vira BRANCO */
+    box-shadow: none; /* Remove sombra antiga */
+}
+
+/* Hover do número livre */
+.numero-card:hover {
+    background-color: rgba(255, 255, 255, 0.4); /* Fica mais 'cheio' no hover */
+    border-color: #FFFFFF;
+    color: #FFFFFF;
+    transform: scale(1.05);
+    cursor: pointer;
+}
+/*.numero-livre:hover { transform: scale(1.05); border-color: #28a745; }*/
+
+/* Classes de estado */
+.bg-livre { background-color: #f8f9fa; color: #333; }
+/*.bg-selecionado { background-color: #28a745; color: white; border-color: #28a745; }*/
+.bg-vendido { background-color: #dc3545; color: white; cursor: not-allowed; opacity: 0.6; }
+
+/* Barra flutuante de checkout */
+#checkout-bar {
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    width: 100%;
+    background: white;
+    padding: 15px;
+    box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
+    display: none; /* Começa escondida */
+    z-index: 1000;
+}
+
+/* Garante que o texto dentro do modal seja legível */
+#modalPagamento .modal-body {
+    color: #343a40; /* Cor de texto padrão (preto suave) */
+}
+
+/* Garante que o <p> específico também seja escuro */
+#modalPagamento .lead {
+    color: #343a40 !important; 
+}
+
+/* Garante que o botão de copiar seja sutil */
+#btn-copiar-pix {
+    font-size: 0.8rem;
+    padding: 0.25rem 0.5rem;
+}

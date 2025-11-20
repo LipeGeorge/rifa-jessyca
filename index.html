@@ -3,129 +3,60 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Rifa da Jessyca</title>
+    <title>Rifa de Boas Festas!</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <style>
+    <link rel="stylesheet" href="style.css">
 
-        /* --- Estilos do Timer --- */
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;700&display=swap" rel="stylesheet">
 
-        .timer-container {
-            /* Apenas centraliza o conteúdo */
-            text-align: center;
-        }
 
-        .timer-badge {
-            /* A "etiqueta" laranja */
-            display: inline-block;
-            background-color: #f39c12; /* Um tom de laranja/âmbar */
-            color: #333; /* Texto escuro para contrastar */
-            padding: 4px 12px;
-            border-radius: 8px;
-            font-size: 0.9rem;
-            font-weight: 500;
-        }
-
-        #countdown-display {
-            /* A caixa branca do relógio */
-            display: inline-block; /* Faz a caixa ter o tamanho do conteúdo */
-            background-color: white;
-            border: 1px solid #eee;
-            border-radius: 8px;
-            padding: 10px 24px;
-            margin: 10px 0; /* Espaçamento entre as etiquetas */
-            
-            /* Estilo da fonte */
-            font-size: 1.75rem; /* Tamanho grande */
-            font-weight: bold;
-            color: #333;
-        }
-
-        /* Efeito de hover para os números LIVRES */
-        .numero-card.bg-livre:hover {
-            transform: scale(1.05); /* Efeito de 'saltar' levemente */
-            border-color: #28a745;  /* Borda fica verde (cor de seleção) */
-            border-width: 2px;      /* Garante que a borda fique mais grossa */
-            cursor: pointer;           /* Mostra a 'mãozinha' */
-        }
-
-        /* Força a cor do botão (Exemplo TEMA VERDE) */
-        #btn-reservar {
-            background-color: #28a745; /* Verde padrão do Bootstrap */
-            border-color: #28a745;
-        }
-
-        /* Define o hover (um verde mais escuro) */
-        #btn-reservar:hover {
-            background-color: #218838; 
-            border-color: #1e7e34;
-        }
-
-        body {
-            /* ... (suas regras de background-image e min-height) ... */
-            background-image: linear-gradient(to bottom, #041b3d, #FFFFFF);
-            min-height: 100vh;
-            background-repeat: no-repeat;
-
-            /* ADICIONE ESTAS 3 LINHAS:
-            Elas criam a "moldura" de degradê
-            */
-            padding-top: 15px;
-            padding-left: 10px;
-            padding-right: 10px;
-            /* Não mexemos no padding-bottom, pois ele já é
-            controlado pela classe "pb-5" que está na sua tag <body> 
-            */
-        }
-
-        /* Estilos simples para os estados dos números */
-        .numero-card {
-            cursor: pointer;
-            transition: all 0.2s;
-            border: 2px solid #ddd;
-        }
-        .numero-livre:hover { transform: scale(1.05); border-color: #28a745; }
-        
-        /* Classes de estado */
-        .bg-livre { background-color: #f8f9fa; color: #333; }
-        .bg-selecionado { background-color: #28a745; color: white; border-color: #28a745; }
-        .bg-vendido { background-color: #dc3545; color: white; cursor: not-allowed; opacity: 0.6; }
-
-        /* Barra flutuante de checkout */
-        #checkout-bar {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            background: white;
-            padding: 15px;
-            box-shadow: 0 -2px 10px rgba(0,0,0,0.1);
-            display: none; /* Começa escondida */
-            z-index: 1000;
-        }
-    </style>
 </head>
 <body class="pb-5">
 
     <div class="container py-5 mb-5 bg-white rounded shadow">
 
         <div class="text-center mb-5">
-            <h1>🎟️ Rifa da Jessyca</h1>
-            <p class="lead">Selecione seus números e clique em reservar!</p>
+
+            <h1 class="display-5 fw-bold text-white" style="text-shadow: 0 2px 4px rgba(0,0,0,0.3);">
+                🤍 Rifa de Boas Festas! 🤍
+            </h1>
+
+            <p class="h5 text-white fw-light fst-italic mt-3 mb-4" style="text-shadow: 0 2px 4px rgba(0,0,0,0.3);">
+                Quer encerrar o ano com R$ 500,00 no bolso e ainda ajudar uma amiga?<br>
+                Com apenas R$ 10,00, você entra na disputa por esse presentão!
+            </p>
+
+            
+            <div class="text-white mt-4">
+                <h5 class="fw-bold">✨ É simples:</h5>
+                <ul class="list-unstyled lead" style="text-shadow: 0 2px 4px rgba(0,0,0,0.3);">
+                    <li class="mb-2">1️⃣ Escolha seus números (os livres estão brancos/vidro);</li>
+                    <li class="mb-2">2️⃣ Clique em <strong>"Reservar Números"</strong> na barra aqui embaixo;</li>
+                    <li class="mb-2">3️⃣ Pague o Pix que vai aparecer na tela e envie o comprovante! 😍</li>
+                </ul>
+            </div>
+            
+            <div class="info-sorteio text-white fst-italic mt-4">
+                <p class="m-0">Sorteio pela Loteria Federal! Usaremos os últimos dígitos do 1º prêmio.</p>
+                <h5 class="text-white fw-bold mt-4">Não deixa pra depois!!! 🎄💫</h5>
+            </div>
+            
             <div class="timer-container my-4">
                 <div class="timer-badge">O sorteio será em:</div>
                 <div id="countdown-display" class="shadow-sm">Carregando...</div>
                 <div class="timer-badge">Dia 20 dez às 22h</div>
             </div>
-            <div class="d-flex justify-content-center gap-3">
-                </div>
-
 
             <div class="d-flex justify-content-center gap-3">
-                <div><span class="badge bg-light text-dark border">Livre</span></div>
-                <div><span class="badge bg-success">Selecionado</span></div>
+                <div><span class="badge border border-white text-white">Livre</span></div>
+                <div><span class="badge bg-primary">Selecionado</span></div>
                 <div><span class="badge bg-danger">Vendido</span></div>
             </div>
+
         </div>
+
 
         <div id="grid-numeros" class="row row-cols-4 row-cols-md-6 row-cols-lg-10 g-2">
             <div class="col text-center">Carregando...</div>
@@ -134,162 +65,88 @@
 
     <div id="checkout-bar">
         <div class="container d-flex justify-content-between align-items-center">
+            
             <div>
-                <h5 class="m-0">Selecionados: <span id="contador-selecao">0</span></h5>
-                <small class="text-muted">Total: R$ <span id="valor-total">0,00</span></small>
+                <h5 class="m-0 text-shadow">Selecionados: <span id="contador-selecao">0</span></h5>
+                <small class="text-shadow">Total: R$ <span id="valor-total">0,00</span></small>
             </div>
-            <button onclick="enviarWhatsApp()" class="btn btn-success btn-lg" id="btn-reservar">
-                Continuar para WhatsApp
+
+            <button onclick="reservarNumeros()" class="btn btn-lg" id="btn-reservar">
+                Reservar Números
             </button>
         </div>
     </div>
 
-    <script>
-        // --- CONFIGURAÇÕES ---
-        // COLE AQUI O LINK DO CSV QUE VOCÊ GEROU NO PASSO 1
-        const SHEET_URL = 'https://docs.google.com/spreadsheets/d/e/2PACX-1vRKGsyuscKYI0aLYldQ06Jq6tyvGgOyIupFnrljpdLwv0v1Unh8A9FNDwYpeF8QpKCYUoH7YPLsa2Bs/pub?output=csv'; 
-        
-        const PRECO_POR_NUMERO = 10.00; // Valor da rifa
-        const WHATSAPP_NUMERO = '5588981688970'; // Número da sua amiga (com 55 e DDD)
+    </div>
 
-        // --- ESTADO DA APLICAÇÃO ---
-        let numerosSelecionados = [];
 
-        // --- LÓGICA DO COUNTDOWN TIMER ---
-
-        // 1. Defina a data final do sorteio
-        // IMPORTANTE: O mês em JavaScript vai de 0 a 11 (Jan=0, Fev=1, ..., Nov=10, Dez=11)
-        // Formato: Ano, Mês (0-11), Dia, Hora, Minuto, Segundo
-        const dataSorteio = new Date(2025, 11, 20, 22, 0, 0).getTime(); // Ex: 20 de Nov de 2025 às 22:00
-
-        // 2. Armazena o elemento do timer
-        const timerElement = document.getElementById('countdown-display');
-
-        // 3. Atualiza o timer a cada 1 segundo
-        const timerInterval = setInterval(function() {
-            const agora = new Date().getTime();
-            const distancia = dataSorteio - agora;
-
-            if (distancia < 0) {
-                // Se o tempo acabou
-                clearInterval(timerInterval);
-                timerElement.innerHTML = "🎉 Sorteio Realizado! 🎉";
-                // Muda o estilo para verde (opcional)
-                timerElement.style.backgroundColor = "#28a745";
-                timerElement.style.color = "white";
-            } else {
-                // Se ainda há tempo, calcula
-                const dias = Math.floor(distancia / (1000 * 60 * 60 * 24));
-                const horas = Math.floor((distancia % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-                const minutos = Math.floor((distancia % (1000 * 60 * 60)) / (1000 * 60));
-                const segundos = Math.floor((distancia % (1000 * 60)) / 1000);
-
-                // 4. Exibe o resultado no HTML (o ⏰ é um emoji)
-                timerElement.innerHTML = `⏰ ${dias}d ${horas}h ${minutos}m ${segundos}s`;
-            }
-        }, 1000);
-
-        // --- LÓGICA ---
-        async function carregarDados() {
-            try {
-                const response = await fetch(SHEET_URL);
-                const data = await response.text();
-                processarCSV(data);
-            } catch (error) {
-                console.error('Erro ao carregar:', error);
-                document.getElementById('grid-numeros').innerHTML = '<p class="text-danger text-center">Erro ao carregar os números. Avise o administrador.</p>';
-            }
-        }
-
-        function processarCSV(textoCsv) {
-            const linhas = textoCsv.split('\n');
-            const grid = document.getElementById('grid-numeros');
-            grid.innerHTML = ''; // Limpa o loading
-
-            // Começa do i=1 para pular o cabeçalho da planilha
-            for (let i = 1; i < linhas.length; i++) {
-                // Divide a linha por vírgula (CSV simples)
-                const colunas = linhas[i].split(',');
-                if (colunas.length < 2) continue;
-
-                const numero = colunas[0].trim();
-                const status = colunas[1].trim().toLowerCase(); // "livre" ou "vendido"
-
-                criarElementoNumero(numero, status);
-            }
-        }
-
-        function criarElementoNumero(numero, status) {
-            const grid = document.getElementById('grid-numeros');
-            const div = document.createElement('div');
-            div.className = 'col';
-
-            // Define a classe baseada no status vindo da planilha
-            let classeCor = status === 'vendido' ? 'bg-vendido' : 'bg-livre';
-            
-            div.innerHTML = `
-                <div class="card h-100 numero-card ${classeCor}" 
-                     id="num-${numero}"
-                     onclick="toggleNumero('${numero}', '${status}')">
-                    <div class="card-body d-flex align-items-center justify-content-center p-2">
-                        <h5 class="m-0 fw-bold">${numero}</h5>
-                    </div>
+    <div class="modal fade" id="modalPagamento" tabindex="-1" aria-labelledby="modalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content text-center">
+                
+                <div class="modal-header">
+                    <h5 class="modal-title" id="modalLabel">✅ Números Reservados!</h5>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
-            `;
-            grid.appendChild(div);
-        }
+                
+                <div class="modal-body">
+                    <p class="lead">Seus números estão travados por <strong>15 minutos</strong>.</p>
+                    <p>Pague agora para garantir sua vaga:</p>
+                    
+                    <div class="card bg-light p-3">
+                        <h5 class="m-0 text-start">Chave Pix (Número):</h5>
+                        
+                        <div class="d-flex justify-content-between align-items-center mt-2">
+                            <h6 class="text-primary fw-bold mb-0" style="font-size: 1.2rem;" id="pix-key-text">
+                                88981688970
+                            </h6>
+                            
+                            <button class="btn btn-primary btn-sm" id="btn-copiar-pix" onclick="copiarPix()">
+                                Copiar
+                            </button>
+                        </div>
+                        
+                        <small class="text-muted text-start mt-1">(Jessyca Barbosa)</small>
+                    </div>
+                    <hr>
+                    <p>Após pagar, envie o comprovante.</p>
 
-        function toggleNumero(numero, statusOriginal) {
-            if (statusOriginal === 'vendido') return; // Não faz nada se já vendeu
+                    <button onclick="abrirWhatsApp()" class="btn btn-success btn-lg w-100">
+                        Já Paguei! Enviar Comprovante
+                    </button>
+                </div>
+                
+            </div>
+        </div>
+    </div>
 
-            const index = numerosSelecionados.indexOf(numero);
-            const elemento = document.getElementById(`num-${numero}`);
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.6.10/firebase-database-compat.js"></script>
 
-            if (index > -1) {
-                // Se já estava selecionado, remove
-                numerosSelecionados.splice(index, 1);
-                elemento.classList.remove('bg-selecionado');
-                elemento.classList.add('bg-livre');
-            } else {
-                // Se não estava, adiciona
-                numerosSelecionados.push(numero);
-                elemento.classList.remove('bg-livre');
-                elemento.classList.add('bg-selecionado');
-            }
+    <script>
+        // Import the functions you need from the SDKs you need
+        // import { initializeApp } from "firebase/app";
+        // TODO: Add SDKs for Firebase products that you want to use
+        // https://firebase.google.com/docs/web/setup#available-libraries
 
-            atualizarBarraCheckout();
-        }
+        // Your web app's Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyAk3P5RcKeyZdkRXpz0Nng2AmUd7mDFhMk",
+            authDomain: "rifa-boas-festas.firebaseapp.com",
+            databaseURL: "https://rifa-boas-festas-default-rtdb.firebaseio.com",
+            projectId: "rifa-boas-festas",
+            storageBucket: "rifa-boas-festas.firebasestorage.app",
+            messagingSenderId: "82699674406",
+            appId: "1:82699674406:web:56fe19586eb7260c2917e7"
+        };
 
-        function atualizarBarraCheckout() {
-            const barra = document.getElementById('checkout-bar');
-            const contador = document.getElementById('contador-selecao');
-            const total = document.getElementById('valor-total');
-
-            if (numerosSelecionados.length > 0) {
-                barra.style.display = 'block';
-                contador.innerText = numerosSelecionados.join(', ');
-                total.innerText = (numerosSelecionados.length * PRECO_POR_NUMERO).toFixed(2).replace('.', ',');
-            } else {
-                barra.style.display = 'none';
-            }
-        }
-
-        function enviarWhatsApp() {
-            if (numerosSelecionados.length === 0) return;
-
-            const nums = numerosSelecionados.join(', ');
-            const total = (numerosSelecionados.length * PRECO_POR_NUMERO).toFixed(2).replace('.', ',');
-            
-            // Cria a mensagem
-            const mensagem = `Olá! Gostaria de reservar os números: *${nums}*. Total: R$ ${total}. Como faço o Pix?`;
-            
-            // Abre o WhatsApp
-            const link = `https://wa.me/${WHATSAPP_NUMERO}?text=${encodeURIComponent(mensagem)}`;
-            window.open(link, '_blank');
-        }
-
-        // Inicia tudo
-        carregarDados();
+        // Inicializa o Firebase
+        firebase.initializeApp(firebaseConfig);
     </script>
+
+    <script src="script.js"></script>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    
 </body>
 </html>
